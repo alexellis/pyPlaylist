@@ -4,6 +4,7 @@
   "authors": [
     "Alex Ellis <alexellis2@gmail.com>"
   ],
+  "directory" : "static/bower_components",
   "description": "",
   "main": "",
   "moduleType": [],

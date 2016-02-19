@@ -7,8 +7,8 @@ Python playlist selector for MPC
 
 ```
 # bower install
-# pip install flask
-# pip install python-mpd2
+# pip install flask python-mpd2
+# easy_install flask python-mpd2
 ```
 
 ## Starting/using the app
