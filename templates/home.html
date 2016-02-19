@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+
+	<div class="well well-sm">
+		<div class="row col-sm-12">
+			<button class="col-sm-2 stop" style="height:25px;" id="stop"><span class="glyphicon glyphicon-stop"></span></button>
+			<button class="col-sm-2 resume" style="height:25px;" id="play"><span class="glyphicon glyphicon-play"></span></button>
+			<span class="col-sm-2">&nbsp;</span>
+			<span class="col-sm-2" id="now_playing_label">Now playing:</span>
+			<span class="col-sm-4" id="now_playing">x</span>
+		</div>
+	</div>
+
+	<div class="panel panel-success">
+		<div class="panel-heading">
+		<span>Click on a playlist below:</span>
+		</div>
+		<div class="panel-body">
+			<div class="list-group">
+				  {% for playlist in playlists %}
+					<button type="button" class="list-group-item playlist" id="{{playlist.playlist}}">{{playlist.playlist}}</button>
+				  {% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
