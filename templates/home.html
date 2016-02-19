@@ -1,16 +1,25 @@
 {% extends "layout.html" %}
 {% block body %}
 
-	<div class="well well-sm">
-		<div class="row col-sm-12">
-			<button class="col-sm-2 stop" style="height:25px;" id="stop"><span class="glyphicon glyphicon-stop"></span></button>
-			<button class="col-sm-2 resume" style="height:25px;" id="play"><span class="glyphicon glyphicon-play"></span></button>
-			<span class="col-sm-2">&nbsp;</span>
-			<span class="col-sm-2 visible-sm" id="now_playing_label">Now playing:</span>
-			<span class="col-sm-4" id="now_playing"></span>
+<!-- <p>
+	<span class="visible-xs">Viewport: x</span>
+	<span class="visible-sm">Viewport: s</span>
+	<span class="visible-md">Viewport: m</span>
+	<span class="visible-lg">Viewport: l</span>
+</p> -->
+
+	<div class="well well-sm col-xs-12 col-sm-12 col-md-12">
+		<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<button class="stop col-xs-2 col-sm-2 col-md-2 col-lg-2" style="height:25px;" id="stop"><span class="glyphicon glyphicon-stop"></span></button>
+			<button class="resume col-xs-2 col-sm-2 col-md-2 col-lg-2" style="height:25px;" id="play"><span class="glyphicon glyphicon-play"></span></button>
+
+			<span class="col-xs-2 col-sm-2 col-md-2 col-lg-2">&nbsp;</span>
+
+			<span class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="now_playing"></span>
+			<span class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="stats_output"></span>
 		</div>
 	</div>
-
+<div class="row" style="margin-bottom:5px; margin-top:10px;"></div>
 	<div class="panel panel-success">
 		<div class="panel-heading">
 		<span>Click on a playlist below:</span>

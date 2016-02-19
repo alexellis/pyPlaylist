@@ -15,11 +15,23 @@
 				$.get("/playing/", function(data,result,response) {
 					console.log("Refreshing now playing.")
 					$("#now_playing").text(JSON.parse(data).playlist);
-				})
+				});
 			};
 
 			refreshNowPlaying();
 
+      var refreshStats = function() {
+        $.get("/stats/", function(data,result,response) {
+          var parsed = JSON.parse(data);
+          if(parsed.stats && parsed.stats.bitrate) {
+				       $("#stats_output").text(parsed.stats.bitrate+"kbps");
+          }
+				});
+      };
+
+      setInterval(function() {
+        refreshStats();
+      },3000);
 			setInterval(function(){
 				refreshNowPlaying();
 			},10000)

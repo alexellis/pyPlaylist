@@ -13,6 +13,13 @@ def home():
     player.quit()
     return render_template("home.html", playlists=val)
 
+@app.route('/stats/', methods=['GET'])
+def stats():
+    _stats = None
+    player=Player()
+    _stats= player.get_stats()
+    player.quit()
+    return json.dumps({"stats": _stats})
 
 @app.route('/playing/', methods=['GET'])
 def playing():
