@@ -23,8 +23,15 @@
       var refreshStats = function() {
         $.get("/stats/", function(data,result,response) {
           var parsed = JSON.parse(data);
-          if(parsed.stats && parsed.stats.bitrate) {
-				       $("#stats_output").text(parsed.stats.bitrate+"kbps");
+          if(parsed.stats) {
+				       $("#stats_output").text((parsed.stats.bitrate||0)+"kbps");
+               $(".controls").removeClass("active");
+
+               if(parsed.stats.state=="play") {
+                 $(".resume").addClass("active");
+               } else {
+                 $(".stop").addClass("active");
+               }
           }
 				});
       };
@@ -35,6 +42,11 @@
 			setInterval(function(){
 				refreshNowPlaying();
 			},10000)
+
+      $(".controls").click(function(ev) {
+        $(".controls").removeClass("active");
+        $(this).addClass("active");
+      });
 
 			$("button.resume").click(function(ev) {
 				$.post({

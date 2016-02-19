@@ -26,18 +26,18 @@ class Player:
 		all.update(self.client.status())
 
 		stats = {}
-		stats["elapsed"] = all["elapsed"]
-		stats["state"] = all["state"]
+		stats["elapsed"] = all["elapsed"] if all.has_key("elapsed") else "0"
+		stats["state"] = all["state"] if all.has_key("state") else "stopped"
 		stats["playtime"] = all["playtime"]
 		stats["uptime"] = all["uptime"]
-		stats["bitrate"] = all["bitrate"]
+		stats["bitrate"] = all["bitrate"] if all.has_key('bitrate') else 0
 		print stats
 		return stats
 
 	def get_playing(self):
 		name = "unknown"
 		val = self.client.currentsong()
-		return val["name"]
+		return val["name"] if val.has_key('name') else None
 
 	def load(self,list):
 		print "loading list", list
