@@ -7,8 +7,19 @@ Python playlist selector for MPC
 
 ```
 # bower install
-# pip install flask python-mpd2
-# easy_install flask python-mpd2
+```
+
+Bower may require node.js, if required dependencies can be installed on another computer and copied across with scp.
+
+With PIP:
+
+```
+# sudo pip install flask python-mpd2
+```
+
+With easy_install:
+```
+# sudo easy_install flask python-mpd2
 ```
 
 ## Starting/using the app
