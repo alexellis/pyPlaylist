@@ -5,7 +5,6 @@ import json
 
 app = Flask(__name__)
 
-
 @app.route('/', methods=['GET'])
 def home():
     player=Player()
@@ -34,6 +33,22 @@ def stop():
     playlist =None
     player=Player()
     player.stop()
+    player.quit()
+    return json.dumps({"status": "OK"})
+
+@app.route('/prev/', methods=['POST'])
+def prev():
+    playlist =None
+    player=Player()
+    player.prev()
+    player.quit()
+    return json.dumps({"status": "OK"})
+
+@app.route('/next/', methods=['POST'])
+def next():
+    playlist =None
+    player=Player()
+    player.next()
     player.quit()
     return json.dumps({"status": "OK"})
 

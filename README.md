@@ -24,4 +24,6 @@ With easy_install:
 
 ## Starting/using the app
 
+Your existing playlists will be read from `mpd`, but if you do not have any then you can add some by using the `add_stations.sh` bash script. It will add several popular British radio stations.
+
 Run `python app.py` then navigate to [http://localhost:5000](http://localhost:5000) to select one of the playlists you have saved in MPD.

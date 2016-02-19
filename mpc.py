@@ -31,18 +31,28 @@ class Player:
 		stats["playtime"] = all["playtime"]
 		stats["uptime"] = all["uptime"]
 		stats["bitrate"] = all["bitrate"] if all.has_key('bitrate') else 0
+		stats["playlistlength"] = all["playlistlength"] if all.has_key("playlistlength") else 0
+		stats["song"] = all["song"] if all.has_key("song") else 0
 		print stats
 		return stats
 
 	def get_playing(self):
 		name = "unknown"
 		val = self.client.currentsong()
-		return val["name"] if val.has_key('name') else None
+		name= val["name"] if val.has_key('name') else None
+		name= val["title"] if val.has_key('title') else name
+		print val
+		return name
 
-	def load(self,list):
+	def load(self, list):
 		print "loading list", list
 		self.client.clear()
 		self.client.load(list)
+
+	def next(self):
+		self.client.next()
+	def prev(self):
+		self.client.previous()
 
 	def play(self):
 		self.client.play()

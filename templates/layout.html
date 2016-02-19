@@ -12,16 +12,14 @@
 	<script>
 		$(document).ready(function() {
 			var refreshNowPlaying = function() {
-				$.get("/playing/", function(data,result,response) {
+				$.get("/playing/", function(data, result, response) {
 					console.log("Refreshing now playing.")
 					$("#now_playing").text(JSON.parse(data).playlist);
 				});
 			};
 
-			refreshNowPlaying();
-
       var refreshStats = function() {
-        $.get("/stats/", function(data,result,response) {
+        $.get("/stats/", function(data, result, response) {
           var parsed = JSON.parse(data);
           if(parsed.stats) {
 				       $("#stats_output").text((parsed.stats.bitrate||0)+"kbps");
@@ -32,8 +30,14 @@
                } else {
                  $(".stop").addClass("active");
                }
-          }
-				});
+               $("#playlist_controls").toggle(Number(parsed.stats.playlistlength) > 1);
+             }
+          });
+			};
+
+      var invalidateView = function() {
+        refreshStats();
+        refreshNowPlaying();
       };
 
       setInterval(function() {
@@ -44,38 +48,44 @@
 			},10000)
 
       $(".controls").click(function(ev) {
-        $(".controls").removeClass("active");
-        $(this).addClass("active");
+        var id = $(this).attr('id');
+
+        if(id == "resume" || id == "stop") {
+          $(".controls").removeClass("active");
+          $(this).addClass("active");
+        }
       });
 
 			$("button.resume").click(function(ev) {
-				$.post({
-					url: "/resume/",
-					data: {},
-					success: function() {
-					}
-				});
+				$.post({url: "/resume/",data: {}});
+        invalidateView();
 			});
 			$("button.stop").click(function(ev) {
-				$.post({
-					url: "/stop/",
-					data: {},
-					success: function() {
-					}
-				});
+				$.post({url: "/stop/", data: {}});
+        invalidateView();
+			});
+      $("button.next").click(function(ev) {
+				$.post({url: "/next/", data: {}});
+        invalidateView();
+			});
+      $("button.prev").click(function(ev) {
+				$.post({url: "/prev/", data: {}});
+        invalidateView();
 			});
 			$("button.playlist").click(function(ev) {
-				$("button.playlist").removeClass('active')
+				$("button.playlist").removeClass('active');
 
-				$(this).toggleClass('active')
+				$(this).toggleClass('active');
 				$.post({
 					url: "/play/",
-					data: {"playlist":$(this).attr('id')},
+					data: {"playlist": $(this).attr('id')},
 					success: function() {
 						$("#now_playing").text("Fetching name..");
 					}
 				});
 			});
+
+      invalidateView();
 		});
 	</script>
 <title>pyPlaylist</title>
