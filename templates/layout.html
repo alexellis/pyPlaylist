@@ -30,7 +30,15 @@
                } else {
                  $(".stop").addClass("active");
                }
-               $("#playlist_controls").toggle(Number(parsed.stats.playlistlength) > 1);
+               var multiplaylist = Number(parsed.stats.playlistlength) > 1;
+               $("#playlist_controls").toggle(multiplaylist);
+               if(multiplaylist) {
+                 $("#now_playing").addClass("col-xs-4");
+                 $("#now_playing").removeClass("col-xs-6");
+               } else {
+                 $("#now_playing").removeClass("col-xs-4");
+                 $("#now_playing").addClass("col-xs-6");
+               }
              }
           });
 			};
