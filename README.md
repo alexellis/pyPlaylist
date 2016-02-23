@@ -1,5 +1,8 @@
 # pyPlaylist
-Python playlist selector for MPC
+
+pyPlaylist is a light-weight Web-based playlist tool for controlling UNIX/Linux's Music Player Daemon (MPD).
+
+Use this tool to easily play a range of streaming radio stations or music playlists (mp3, flac etc).
 
 ## Installation
 
