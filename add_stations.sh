@@ -4,7 +4,7 @@ if [ -e personal_stations.sh ]; then
   sh ./personal_stations.sh
 fi
 
-rm ~/.mpd/playlists/*
+mpc ls |xargs -n1 mpc rm
 
 mpc clear
 curl -s http://www.radiofeeds.co.uk/bbcradio1.pls|cat|grep 'File1'|cut -d\= -f2-20 |mpc add

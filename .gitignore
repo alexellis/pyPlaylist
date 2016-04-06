@@ -1,4 +1,6 @@
 *.pls
 *.pyc
+*.tar.gz
+node/
 bower_components/
 personal_stations.sh
